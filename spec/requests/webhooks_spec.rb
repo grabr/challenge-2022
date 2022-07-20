@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'webhooks', type: :request do
-  subject { post '/webhooks', params: params }
+  subject { post '/webhooks', params: params, headers: default_headers }
 
   let!(:sender) do
     Fabricate(
@@ -25,6 +25,13 @@ describe 'webhooks', type: :request do
       amount_cents: 100_00,
       rate: 1.5
     )
+  end
+
+  let(:default_headers) do
+    {
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
   end
 
   let(:params) { { transfer_id: transfer_ext_id, status: status }.to_json }
