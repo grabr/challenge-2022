@@ -30,14 +30,12 @@ describe 'v1/transfers', type: :request do
 
   let(:params) { { to_id: receiver.id, amount_cents: 100_0 }.to_json }
 
-  before do
-    stub = allow_any_instance_of(Gateway).to receive(:create_transfer)
-
+  before(:each) do
     case gateway_response
     when Hash
-      stub.and_return(gateway_response)
-    when Exception
-      stub.and_raise(gateway_response)
+      allow_any_instance_of(Gateway).to receive(:create_transfer).and_return(gateway_response)
+    when StandardError
+      allow_any_instance_of(Gateway).to receive(:create_transfer).and_raise(gateway_response)
     end
   end
 
@@ -63,7 +61,7 @@ describe 'v1/transfers', type: :request do
   end
 
   context 'when gateway throws an error' do
-    let(:gateway_response) { Gateway::NetworkError }
+    let(:gateway_response) { ::Gateway::NetworkError.new }
 
     it 'responds with an error' do
       expect { subject }.not_to change(Transfer, :count)
