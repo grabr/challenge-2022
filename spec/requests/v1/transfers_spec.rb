@@ -28,7 +28,7 @@ describe 'v1/transfers', type: :request do
     }
   end
 
-  let(:params) { { to_id: receiver.id, amount_cents: 100_0 } }
+  let(:params) { { to_id: receiver.id, amount_cents: 100_0 }.to_json }
 
   before do
     stub = allow_any_instance_of(Gateway).to receive(:create_transfer)

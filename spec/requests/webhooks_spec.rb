@@ -27,7 +27,7 @@ describe 'webhooks', type: :request do
     )
   end
 
-  let(:params) { { transfer_id: transfer_ext_id, status: status } }
+  let(:params) { { transfer_id: transfer_ext_id, status: status }.to_json }
   let(:transfer_ext_id) { SecureRandom.uuid }
 
   context 'when status is succeeded' do
