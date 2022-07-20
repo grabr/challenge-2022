@@ -23,7 +23,7 @@ class Gateway
     )
 
     if response.success?
-      JSON.parse(response.body)
+      JSON.parse(response.body).symbolize_keys
     else
       raise NetworkError
     end

@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_090249) do
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "balance_cents", default: 0, null: false
     t.string "balance_currency", null: false
-    t.string "pending_balance_cents", default: "0", null: false
+    t.integer "pending_balance_cents", default: 0, null: false
     t.string "external_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

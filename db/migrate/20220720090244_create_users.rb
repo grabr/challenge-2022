@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
     create_table :users, id: :uuid do |t|
       t.integer :balance_cents, default: 0, null: false
       t.string :balance_currency, null: false
-      t.string :pending_balance_cents, default: 0, null: false
+      t.integer :pending_balance_cents, default: 0, null: false
 
       t.string :external_id
 

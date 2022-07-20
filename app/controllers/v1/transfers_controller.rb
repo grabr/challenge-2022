@@ -10,9 +10,10 @@ module V1
     #   - status: 201
     #   - json: { transfer_id: <CREATED TRANSFER ID> }
     # - In case of failure:
-    #   - status: 400
+    #   - status: 422
     #   - json: { error: <ERROR MESSAGE> }
     def create
+      render json: {}
     end
   end
 end
